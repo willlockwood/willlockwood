@@ -3,16 +3,18 @@ naming_scotus_pdfs
 
 Names are based on:
 
-orders = pd.read_csv('out/supremecourt.gov/orders.csv').drop(columns='Unnamed: 0')
-relating_to_orders = pd.read_csv('out/supremecourt.gov/relating_to_orders.csv').drop(columns='Unnamed: 0')
-orders_pdfs = orders.loc[(orders['name_url'].isnull()==False) | (orders['revised_url'].isnull()==False)]
+orders_pdfs = orders.loc[(orders['name_url'].isnull()==False)]
+revised_orders_pdfs = orders.loc[(orders['revised_url'].isnull()==False)]
+relating_to_orders_pdfs = relating_to_orders.loc[(relating_to_orders['name_url'].isnull()==False)]
+revised_relating_to_orders_pdfs = relating_to_orders.loc[(relating_to_orders['revised_url'].isnull()==False)]
 
+file_name = data_row[0] + '_' + data_row[1]['docket'] + '_' + data_row[1]['justice']
 
-'out/supremecourt.gov/' + folder + file_name.replace(' ', '_')
+"out/supremecourt.gov/pdf/" + folder + file_name.replace(' ', '_').replace('.', '+').replace(',', '=') + '.pdf'
 
 
 folders: 
-	'relating_to_orders_pdfs/'
-	'revised_relating_to_orders_pdfs/'
-	'orders_pdfs/'
-	'revised_orders_pdfs/'
+	'relating_to_orders/'
+	'revised_relating_to_orders/'
+	'orders/'
+	'revised_orders/'
