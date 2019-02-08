@@ -1,0 +1,18 @@
+naming_scotus_pdfs
+
+
+Names are based on:
+
+orders = pd.read_csv('out/supremecourt.gov/orders.csv').drop(columns='Unnamed: 0')
+relating_to_orders = pd.read_csv('out/supremecourt.gov/relating_to_orders.csv').drop(columns='Unnamed: 0')
+orders_pdfs = orders.loc[(orders['name_url'].isnull()==False) | (orders['revised_url'].isnull()==False)]
+
+
+'out/supremecourt.gov/' + folder + file_name.replace(' ', '_')
+
+
+folders: 
+	'relating_to_orders_pdfs/'
+	'revised_relating_to_orders_pdfs/'
+	'orders_pdfs/'
+	'revised_orders_pdfs/'
